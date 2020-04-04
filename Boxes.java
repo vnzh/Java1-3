@@ -37,6 +37,7 @@ public class Boxes {
         boxes.get(5).add(new Apple(), 40);
         boxes.get(5).add(new Orange(), 50);
         boxes.get(5).add(new Apple(), 10);
+        boxes.add(new Box());
 
         System.out.println(boxes.get(0).compare(boxes.get(4)));
         System.out.println(boxes.get(0).compare(boxes.get(1)));
@@ -44,12 +45,16 @@ public class Boxes {
 
         transfer(0,1);
         transfer(0, 3);
+        transfer(1, 6);
+
+
         System.out.println(boxes.get(0).toString());
         System.out.println(boxes.get(1).toString());
         System.out.println(boxes.get(2).toString());
         System.out.println(boxes.get(3).toString());
         System.out.println(boxes.get(4).toString());
         System.out.println(boxes.get(5).toString());
+        System.out.println(boxes.get(6).toString());
 
 
 
@@ -106,6 +111,8 @@ class Box  {
     }
 
     Box moveTo (Box box) throws TransferExeption {
+        if (box.sort == null)  box.sort = this.sort ;
+        else
         if (!this.sort.getSort().equals(box.sort.getSort())) throw  new TransferExeption("Sorts are different");
 //        if (box.sort instanceof  this.sort) throw  new TransferExeption("Sorts are different");
         // проверку   типов  через истанс оа  не удается успешно провести, компилятортне пускает.
@@ -113,6 +120,7 @@ class Box  {
 
         box.amount = box.amount + this.amount;
         this.amount = 0;
+        this.sort = null;
         return box;
     }
 //метод добавления    фруктов в пустой  ящик
