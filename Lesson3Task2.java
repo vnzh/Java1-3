@@ -21,6 +21,7 @@ public class Lesson3Task2 {
     private static String fileThree ="D:\\txt\\3.txt";
     private static String fileFour = "D:\\txt\\4.txt";
     private static String fileFife = "D:\\txt\\5.txt";
+    private  static String fileSix = "D:\\txt\\6.txt";
 
 
     public static void main(String[] args) throws IOException {
@@ -28,6 +29,8 @@ public class Lesson3Task2 {
             streams.add(new FileInputStream(fileTwo));
             streams.add(new FileInputStream(fileThree));
             streams.add(new FileInputStream(fileFour));
+            streams.add(new FileInputStream(fileFife));
+
 
             // Как  я понимаю,   если  инициализировать  потоки в ArrayList<FileInputStream> streams
         // сразу при создании, то  файлы  будут заблокированы,  на поддержание потоков будут расходоваться ресурсы
@@ -35,7 +38,7 @@ public class Lesson3Task2 {
 
         Enumeration<FileInputStream> enumeration = Collections.enumeration(streams);
         SequenceInputStream sequenceInputStream = new SequenceInputStream(enumeration);
-        FileOutputStream  outputStream = new FileOutputStream(fileFife, true);
+        FileOutputStream  outputStream = new FileOutputStream(fileSix);
         byte[]  bytes = new byte[1000];
         int readDone = 0;
         while (sequenceInputStream.available() > 0) {
@@ -43,6 +46,7 @@ public class Lesson3Task2 {
              outputStream.write(bytes, 0, readDone);
         }
         sequenceInputStream.close();
+        outputStream.close();
    }
 
 }
