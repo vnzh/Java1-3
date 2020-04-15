@@ -57,9 +57,9 @@ public class ObjectControl {
                         }
                     }
                    // System.out.println(myObject.getaChar());
-                    System.out.println(Thread.currentThread().getName());
+//                    System.out.println(Thread.currentThread().getName());
 //                aChar  = (MaChar > 67) ? 65: aChar++;
-//                    myObject.setaChar(Thread.currentThread().getName().toString());
+//                    myObject.setaChar();
                     myObject.notifyAll();
                 }
             }
